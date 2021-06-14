@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<style>
+		body {
+      left:50%
+      top:50%;
+      text-align: center;
+      background:url("https://www.xn--42caj4e6bk1f5b1j.com/BG_PC_png.4e8f0905492dee67db74.png")
+		}
+    .container {
+      color:white;
+      border:2px solid ;
+      border-color:red;
+    }
+		.remain {
+			font-size: 3rem;
+		}
+
+		.material-icons {
+			font-size: 54px;
+      color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+			<img src="https://i.imgur.com/VILkIo6.png" border="0">
+			<h2>จำนวนสิทธิคงเหลือ<br>โครงการคนละครึ่งเฟส 3</h2>
+			<span class="material-icons w3-blue">groups</span>
+			<div id="remain" class="remain "></div>
+	</div>
+  <script>
+    const getRemaining = () => {
+    axios
+        .get("https://api.xn--42caj4e6bk1f5b1j.com/quota/hh")
+        .then((response) => {
+            let remain = document.getElementById("remain");
+            remain.innerHTML = response.data.remaining.toLocaleString();;
+        })
+        .catch((error) => console.error(error));
+};
+
+setInterval(getRemaining, 500);
+  </script>
+</body>
+</html>
